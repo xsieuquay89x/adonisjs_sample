@@ -1,0 +1,154 @@
+/admin/models:
+  get:
+    tags:
+      - Admin Model management
+    description: Get Model list
+    responses:
+      200:
+        description:
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: '#/components/schemas/Response'
+                - type: object
+                  properties:
+                    data:
+                      type: array
+                      items:
+                        $ref: '#/components/schemas/Model'
+      default:
+        description: Unexpected error
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ResponseError'
+  post:
+    tags:
+      - Admin Model management
+    description: Create a Model
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              name:
+                type: string
+              year:
+                type: string
+              brand_id:
+                type: string
+              image_id:
+                type: string
+            required:
+              - name
+              - brand_id
+    responses:
+      200:
+        description:
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: '#/components/schemas/Response'
+                - type: object
+                  properties:
+                    data:
+                      $ref: '#/components/schemas/Model'
+      default:
+        description: Unexpected error
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ResponseError'
+/admin/models/{id}:
+  get:
+    tags:
+      - Admin Model management
+    description: Get a Model
+    parameters:
+      - in: path
+        name: id
+        required: true
+    responses:
+      200:
+        description:
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: '#/components/schemas/Response'
+                - type: object
+                  properties:
+                    data:
+                      $ref: '#/components/schemas/Model'
+      default:
+        description: Unexpected error
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ResponseError'
+  put:
+    tags:
+      - Admin Model management
+    description: Update a Model
+    parameters:
+      - in: path
+        name: id
+        required: true
+    requestBody:
+      description: Update Brand
+      required: true
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              name:
+                type: string
+              year:
+                type: string
+              brand_id:
+                type: string
+              image_id:
+                type: string
+            required:
+              - name
+              - brand_id
+    responses:
+      200:
+        description:
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: '#/components/schemas/Response'
+                - type: object
+                  properties:
+                    data:
+                      $ref: '#/components/schemas/Model'
+      default:
+        description: Unexpected error
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ResponseError'
+  delete:
+    tags:
+      - Admin Model management
+    description: Delete a Model
+    parameters:
+      - in: path
+        name: id
+        required: true
+    responses:
+      204:
+        description:
+      default:
+        description: Unexpected error
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ResponseError'

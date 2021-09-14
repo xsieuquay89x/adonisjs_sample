@@ -1,0 +1,198 @@
+/admin/users:
+  get:
+    tags:
+      - Admin User management
+    description: Get user list
+    responses:
+      200:
+        description:
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: '#/components/schemas/Response'
+                - type: object
+                  properties:
+                    data:
+                      type: array
+                      items:
+                        $ref: '#/components/schemas/User'
+      default:
+        description: Unexpected error
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ResponseError'
+  post:
+    tags:
+      - Admin User management
+    description: Add a user
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              first_name:
+                type: string
+              last_name:
+                type: string
+              display_name:
+                type: string
+              gender:
+                type: string
+                enum:
+                  - Male
+                  - Female
+              dob:
+                description: Format yyyy-MM-dd (2021-07-12)
+                type: string
+              address1:
+                type: string
+              address2:
+                type: string
+              city:
+                type: string
+              country:
+                type: string
+              email:
+                type: string
+              mobile:
+                type: string
+              image_id:
+                type: string
+            required:
+              - first_name
+              - last_name
+              - gender
+              - dob
+              - address1
+              - email
+    responses:
+      200:
+        description:
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: '#/components/schemas/Response'
+                - type: object
+                  properties:
+                    data:
+                      $ref: '#/components/schemas/User'
+      default:
+        description: Unexpected error
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ResponseError'
+/admin/users/{id}:
+  get:
+    tags:
+      - Admin User management
+    description: Get a user
+    parameters:
+      - in: path
+        name: id
+        required: true
+    responses:
+      200:
+        description:
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: '#/components/schemas/Response'
+                - type: object
+                  properties:
+                    data:
+                      $ref: '#/components/schemas/User'
+      default:
+        description: Unexpected error
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ResponseError'
+  put:
+    tags:
+      - Admin User management
+    description: Update a user
+    parameters:
+      - in: path
+        name: id
+        required: true
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              first_name:
+                type: string
+              last_name:
+                type: string
+              display_name:
+                type: string
+              gender:
+                type: string
+                enum:
+                  - Male
+                  - Female
+              dob:
+                description: Format yyyy-MM-dd (2021-07-12)
+                type: string
+              address1:
+                type: string
+              address2:
+                type: string
+              city:
+                type: string
+              country:
+                type: string
+              mobile:
+                type: string
+              image_id:
+                type: string
+            required:
+              - first_name
+              - last_name
+              - gender
+              - dob
+              - address1
+    responses:
+      200:
+        description:
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: '#/components/schemas/Response'
+                - type: object
+                  properties:
+                    data:
+                      $ref: '#/components/schemas/User'
+      default:
+        description: Unexpected error
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ResponseError'
+  delete:
+    tags:
+      - Admin User management
+    description: Delete a user
+    parameters:
+      - in: path
+        name: id
+        required: true
+    responses:
+      204:
+        description:
+      default:
+        description: Unexpected error
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ResponseError'

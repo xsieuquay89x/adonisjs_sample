@@ -1,0 +1,19 @@
+version: '3'
+services:
+  app:
+    build:
+      context: .
+      dockerfile: .docker/prod/Dockerfile
+    restart: always
+    environment:
+      - VIRTUAL_HOST=assignmentapi.local
+
+  nginx-proxy:
+    image: jwilder/nginx-proxy:alpine
+    ports:
+      - 80:80
+      # SSL https://github.com/nginx-proxy/docker-letsencrypt-nginx-proxy-companion
+      # - 443:443
+    volumes:
+      - .docker/prod/nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - /var/run/docker.sock:/tmp/docker.sock:ro

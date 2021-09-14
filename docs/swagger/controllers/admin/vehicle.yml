@@ -1,0 +1,197 @@
+/admin/vehicles:
+  get:
+    tags:
+      - Admin Vehicle management
+    description: Get vehicle list
+    responses:
+      200:
+        description:
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: '#/components/schemas/Response'
+                - type: object
+                  properties:
+                    data:
+                      type: array
+                      items:
+                        $ref: '#/components/schemas/Vehicle'
+      default:
+        description: Unexpected error
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ResponseError'
+  post:
+    tags:
+      - Admin Vehicle management
+    description: Add a Vehicle
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              name:
+                type: string
+              color:
+                type: string
+              mileage:
+                type: number
+              identification_number:
+                type: string
+              plate_number:
+                type: string
+              manufactured_date:
+                description: Format yyyy-MM-dd (2021-07-12)
+                type: string
+              purchased_date:
+                description: Format yyyy-MM-dd (2021-07-12)
+                type: string
+              parking_location:
+                type: string
+              parking_latitude:
+                type: number
+              parking_longitude:
+                type: number
+              owner_id:
+                type: string
+              model_id:
+                type: string
+              image_id:
+                type: string
+            required:
+              - name
+              - color
+              - plate_number
+              - model_id
+    responses:
+      200:
+        description:
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: '#/components/schemas/Response'
+                - type: object
+                  properties:
+                    data:
+                      $ref: '#/components/schemas/Vehicle'
+      default:
+        description: Unexpected error
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ResponseError'
+/admin/vehicles/{id}:
+  get:
+    tags:
+      - Admin Vehicle management
+    description: Get a vehicle
+    parameters:
+      - in: path
+        name: id
+        required: true
+    responses:
+      200:
+        description:
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: '#/components/schemas/Response'
+                - type: object
+                  properties:
+                    data:
+                      $ref: '#/components/schemas/Vehicle'
+      default:
+        description: Unexpected error
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ResponseError'
+  put:
+    tags:
+      - Admin Vehicle management
+    description: Update a vehicle
+    parameters:
+      - in: path
+        name: id
+        required: true
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              name:
+                type: string
+              color:
+                type: string
+              mileage:
+                type: number
+              identification_number:
+                type: string
+              plate_number:
+                type: string
+              manufactured_date:
+                description: Format yyyy-MM-dd (2021-07-12)
+                type: string
+              purchased_date:
+                description: Format yyyy-MM-dd (2021-07-12)
+                type: string
+              parking_location:
+                type: string
+              parking_latitude:
+                type: number
+              parking_longitude:
+                type: number
+              owner_id:
+                type: string
+              model_id:
+                type: string
+              image_id:
+                type: string
+            required:
+              - name
+              - color
+              - plate_number
+              - model_id
+    responses:
+      200:
+        description:
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: '#/components/schemas/Response'
+                - type: object
+                  properties:
+                    data:
+                      $ref: '#/components/schemas/Vehicle'
+      default:
+        description: Unexpected error
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ResponseError'
+  delete:
+    tags:
+      - Admin Vehicle management
+    description: Delete a vehicle
+    parameters:
+      - in: path
+        name: id
+        required: true
+    responses:
+      204:
+        description:
+      default:
+        description: Unexpected error
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ResponseError'

@@ -1,0 +1,15 @@
+components:
+  schemas:
+    Model:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        year:
+          type: string
+        brand_id:
+          type: string
+        image_id:
+          type: string

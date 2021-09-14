@@ -1,0 +1,31 @@
+components:
+  schemas:
+    User:
+      type: object
+      properties:
+        id:
+          type: string
+        first_name:
+          type: string
+        last_name:
+          type: string
+        display_name:
+          type: string
+        gender:
+          type: string
+        dob:
+          type: string
+        address1:
+          type: string
+        address2:
+          type: string
+        city:
+          type: string
+        country:
+          type: string
+        email:
+          type: string
+        mobile:
+          type: string
+        image_id:
+          type: string

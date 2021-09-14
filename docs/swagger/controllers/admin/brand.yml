@@ -1,0 +1,145 @@
+/admin/brands:
+  get:
+    tags:
+      - Admin Brand management
+    description: Get brand list
+    responses:
+      200:
+        description:
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: '#/components/schemas/Response'
+                - type: object
+                  properties:
+                    data:
+                      type: array
+                      items:
+                        $ref: '#/components/schemas/Brand'
+      default:
+        description: Unexpected error
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ResponseError'
+  post:
+    tags:
+      - Admin Brand management
+    description: Add a brand
+    requestBody:
+      description: Create Brand
+      required: true
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              name:
+                type: string
+              image_id:
+                type: string
+            required:
+              - name
+    responses:
+      200:
+        description:
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: '#/components/schemas/Response'
+                - type: object
+                  properties:
+                    data:
+                      $ref: '#/components/schemas/Brand'
+      default:
+        description: Unexpected error
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ResponseError'
+/admin/brands/{id}:
+  get:
+    tags:
+      - Admin Brand management
+    description: Get a brand
+    parameters:
+      - in: path
+        name: id
+        required: true
+    responses:
+      200:
+        description:
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: '#/components/schemas/Response'
+                - type: object
+                  properties:
+                    data:
+                      $ref: '#/components/schemas/Brand'
+      default:
+        description: Unexpected error
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ResponseError'
+  put:
+    tags:
+      - Admin Brand management
+    description: Update a brand
+    parameters:
+      - in: path
+        name: id
+        required: true
+    requestBody:
+      description: Update Brand
+      required: true
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              name:
+                type: string
+              image_id:
+                type: string
+            required:
+              - name
+    responses:
+      200:
+        description:
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: '#/components/schemas/Response'
+                - type: object
+                  properties:
+                    data:
+                      $ref: '#/components/schemas/Brand'
+      default:
+        description: Unexpected error
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ResponseError'
+  delete:
+    tags:
+      - Admin Brand management
+    description: Delete a brand
+    parameters:
+      - in: path
+        name: id
+        required: true
+    responses:
+      204:
+        description:
+      default:
+        description: Unexpected error
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ResponseError'

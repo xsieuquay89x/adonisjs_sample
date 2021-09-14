@@ -1,0 +1,7 @@
+components:
+  schemas:
+    UserInfo:
+      type: object
+      properties:
+        id:
+          type: string

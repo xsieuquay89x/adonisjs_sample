@@ -1,0 +1,46 @@
+/upload:
+  post:
+    tags:
+      - Core Upload
+    description: Upload File To Server
+    consumes:
+      - multipart/form-data
+    requestBody:
+      description: Upload File Before Create/Update Info
+      required: true
+      content:
+        multipart/form-data:
+          schema: # Request payload
+            type: object
+            properties:
+              type:
+                description:
+                  0 - Profile \
+                  1 - Brand \
+                  2 - Model
+                type: integer
+                enum:
+                  - 0
+                  - 1
+                  - 2
+              image:
+                type: string
+                format: binary
+    responses:
+      200:
+        description:
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: '#/components/schemas/Response'
+                - type: object
+                  properties:
+                    data:
+                      $ref: '#/components/schemas/Upload'
+      default:
+        description: Unexpected error
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ResponseError'

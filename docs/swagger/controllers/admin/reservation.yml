@@ -1,0 +1,52 @@
+/admin/reservations:
+  get:
+    tags:
+      - Admin Reservation management
+    description: Get Reservation list
+    responses:
+      200:
+        description:
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: '#/components/schemas/Response'
+                - type: object
+                  properties:
+                    data:
+                      type: array
+                      items:
+                        $ref: '#/components/schemas/Reservation'
+      default:
+        description: Unexpected error
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ResponseError'
+/admin/reservations/{id}:
+  get:
+    tags:
+      - Admin Reservation management
+    description: Get a Reservation
+    parameters:
+      - in: path
+        name: id
+        required: true
+    responses:
+      200:
+        description:
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: '#/components/schemas/Response'
+                - type: object
+                  properties:
+                    data:
+                      $ref: '#/components/schemas/Reservation'
+      default:
+        description: Unexpected error
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ResponseError'

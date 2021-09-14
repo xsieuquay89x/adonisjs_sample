@@ -1,0 +1,7 @@
+components:
+  schemas:
+    Upload:
+      type: object
+      properties:
+        id:
+          type: string

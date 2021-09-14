@@ -1,0 +1,20 @@
+version: '3'
+services:
+  db:
+    image: postgres:10
+    restart: always
+    volumes:
+      ## windows
+      # - postgres-data:/var/lib/postgresql/data/pgdata
+      ## mac or linux
+      - /tmp/postgres-data:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: assignment
+## windows only
+# volumes:
+#   postgres-data:
+#     external: true

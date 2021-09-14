@@ -1,0 +1,33 @@
+components:
+  schemas:
+    Vehicle:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        color:
+          type: string
+        mileage:
+          type: number
+        identification_number:
+          type: string
+        plate_number:
+          type: string
+        manufactured_date:
+          type: string
+        purchased_date:
+          type: string
+        parking_location:
+          type: string
+        parking_latitude:
+          type: string
+        parking_longitude:
+          type: string
+        owner_id:
+          type: string
+        model_id:
+          type: string
+        image_id:
+          type: string

@@ -1,0 +1,31 @@
+components:
+  schemas:
+    Reservation:
+      type: object
+      properties:
+        id:
+          type: string
+        contract_name:
+          type: string
+        contact_phone:
+          type: string
+        driver_name:
+          type: string
+        driver_phone:
+          type: string
+        plate_number:
+          type: string
+        pick_location:
+          type: string
+        destination_location:
+          type: string
+        duration:
+          type: number
+        pick_date:
+          type: string
+        start_date:
+          type: string
+        completed_date:
+          type: string
+        status:
+          type: string

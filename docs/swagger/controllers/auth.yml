@@ -1,0 +1,140 @@
+/auth/login:
+  post:
+    tags:
+      - Authentication
+    security: []
+    description: Login with username and password
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              username:
+                type: string
+                required: true
+              password:
+                type: string
+                required: true
+    responses:
+      200:
+        description: Login successfully
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: '#/components/schemas/Response'
+                - type: object
+                  properties:
+                    data:
+                      type: object
+                      properties:
+                        type:
+                          type: string
+                        token:
+                          type: string
+                        expires_at:
+                          type: string
+                          format: date-time
+      default:
+        description: Unexpected error
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ResponseError'
+/auth/logout:
+  post:
+    tags:
+      - Authentication
+    description: Logout
+    responses:
+      204:
+        description: Logout successfully
+      default:
+        description: Unexpected error
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ResponseError'
+/auth/forgot-password:
+  post:
+    tags:
+      - Authentication
+    description: Submit a request to reset password
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              username:
+                type: string
+                required: true
+    responses:
+      204:
+        description: Password reset requested successfully
+      default:
+        description: Unexpected error
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ResponseError'
+/auth/reset-password:
+  post:
+    tags:
+      - Authentication
+    description: Reset password
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              username:
+                type: string
+                required: true
+              resetPasswordToken:
+                type: string
+                required: true
+    responses:
+      204:
+        description:
+      default:
+        description: Unexpected error
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ResponseError'
+/auth/change-password:
+  post:
+    tags:
+      - Authentication
+    description: Change user password
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              currentPassword:
+                type: string
+                required: true
+              newPassword:
+                type: string
+                required: true
+              newPasswordAgain:
+                type: string
+                required: true
+    responses:
+      204:
+        description: Password has been changed
+      default:
+        description: Unexpected error
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ResponseError'

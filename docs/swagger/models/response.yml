@@ -1,0 +1,25 @@
+components:
+  schemas:
+    Response:
+      type: object
+      properties:
+        status:
+          type: boolean
+        message:
+          type: string
+        data:
+          schema:
+            oneOf:
+              - array
+              - object
+    ResponseError:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            schema:
+              $ref: '#/components/schemas/Error'
+          example:
+            - code: 404
+              message: 'Sorry, that page does not exist'

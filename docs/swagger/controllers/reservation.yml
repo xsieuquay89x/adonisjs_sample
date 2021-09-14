@@ -1,0 +1,169 @@
+/reservations/book:
+  post:
+    tags:
+      - User Reservation management
+    description: Book A Reservation
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              contact_name:
+                type: string
+              contact_phone:
+                type: string
+              pick_date:
+                description: Format yyyy-MM-dd HH:mm:ss z (2021-07-12 10:12:22 UTC)
+                type: string
+              pick_location:
+                type: string
+              pick_latitude:
+                type: number
+              pick_longitude:
+                type: number
+              destination_location:
+                type: string
+              destination_latitude:
+                type: number
+              destination_longitude:
+                type: number
+
+            required:
+              - contact_name
+              - contact_phone
+              - pick_date
+              - pick_location
+              - destination_location
+    responses:
+      200:
+        description:
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: '#/components/schemas/Response'
+                - type: object
+                  properties:
+                    data:
+                      $ref: '#/components/schemas/User'
+      default:
+        description: Unexpected error
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ResponseError'
+/reservations/arranging/{id}:
+  post:
+    tags:
+      - User Reservation management
+    description: Arranging Reservation
+    parameters:
+      - in: path
+        name: id
+        required: true
+    responses:
+      200:
+        description:
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: '#/components/schemas/Response'
+                - type: object
+                  properties:
+                    data:
+                      $ref: '#/components/schemas/Reservation'
+      default:
+        description: Unexpected error
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ResponseError'
+
+/reservations/start/{id}:
+  post:
+    tags:
+      - User Reservation management
+    description: Start Reservation
+    parameters:
+      - in: path
+        name: id
+        required: true
+    responses:
+      200:
+        description:
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: '#/components/schemas/Response'
+                - type: object
+                  properties:
+                    data:
+                      $ref: '#/components/schemas/Reservation'
+      default:
+        description: Unexpected error
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ResponseError'
+
+
+/reservations/finish/{id}:
+  post:
+    tags:
+      - User Reservation management
+    description: Finish Reservation
+    parameters:
+      - in: path
+        name: id
+        required: true
+    responses:
+      200:
+        description:
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: '#/components/schemas/Response'
+                - type: object
+                  properties:
+                    data:
+                      $ref: '#/components/schemas/Reservation'
+      default:
+        description: Unexpected error
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ResponseError'
+
+
+/reservations/cancel/{id}:
+  post:
+    tags:
+      - User Reservation management
+    description: Cancel Reservation
+    parameters:
+      - in: path
+        name: id
+        required: true
+    responses:
+      200:
+        description:
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: '#/components/schemas/Response'
+                - type: object
+                  properties:
+                    data:
+                      $ref: '#/components/schemas/Reservation'
+      default:
+        description: Unexpected error
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ResponseError'
